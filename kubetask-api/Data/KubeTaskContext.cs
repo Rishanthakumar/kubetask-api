@@ -16,6 +16,7 @@ namespace kubetask_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<KTask>().ToContainer("Tasks");
             modelBuilder.Entity<User>().ToContainer("Users");
             base.OnModelCreating(modelBuilder);
         }

@@ -7,5 +7,8 @@ namespace kubetask_api.Models
 {
     public class KTask
     {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
