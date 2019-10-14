@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using kubetask_api.Data;
+using kubetask_api.Data.Repositories;
+using kubetask_api.Services;
+using kubetask_api.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,7 +37,9 @@ namespace kubetask_api
             services.AddDbContext<KubeTaskContext>((options) => {
                 options.UseCosmos(configSection["ServiceEndpoint"], configSection["Key"], configSection["DatabaseName"]);
             });
-   
+            services.AddTransient<ITaskRepository, TaskRepository>();
+            services.AddTransient<ITaskService, TaskService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

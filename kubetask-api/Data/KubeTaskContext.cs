@@ -1,5 +1,6 @@
 ﻿using kubetask_api.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace kubetask_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<KTask>().Property(t => t.Id).HasValueGenerator<GuidValueGenerator>();
+            modelBuilder.Entity<User>().Property(u => u.Id).HasValueGenerator<GuidValueGenerator>();
+
             modelBuilder.Entity<KTask>().ToContainer("Tasks");
             modelBuilder.Entity<User>().ToContainer("Users");
             base.OnModelCreating(modelBuilder);
